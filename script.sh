@@ -5,12 +5,12 @@ loc="/media/hdd/home/Movies"
 selfLoc="/home/chadidi/files/downloader/"
 
 moveTo() {
-    head -n $3 $1 >> $2 # Move to a new file
-    sed -i -e "1,$3 d" $1 # remove from the old file
+    head -n $3 $selfLoc$1 >> $selfLoc$2 # Move to a new file
+    sed -i -e "1,$3 d" $selfLoc$1 # remove from the old file
 }
 
 count() {
-    linesCount=$(wc -l $1 | awk '{ print $1 }')
+    linesCount=$(wc -l < $selfLoc$1)
     echo $linesCount
 }
 
@@ -20,24 +20,24 @@ download() {
     wget -c $url --directory-prefix=$loc
     if [ $? -ne 0 ]
     then
-        moveTo $selfLoc"inQueue.txt" $selfLoc"failed.txt" 1
+        moveTo "inQueue.txt" "failed.txt" 1
     else
-        mv $selfLoc"${url##*/}" loc
-        moveTo $selfLoc"inQueue.txt" $selfLoc"downloaded.txt" 1
+        mv "${url##*/}" loc
+        moveTo "inQueue.txt" "downloaded.txt" 1
     fi
 }
 
-count $selfLoc"inQueue.txt"
+count "inQueue.txt"
 
 if [ $linesCount != 0 ]
 then
     download
 else
-    count $selfLoc"toDownload.txt"
+    count "toDownload.txt"
 
     if [ $linesCount != 0 ]
     then
-        moveTo $selfLoc"toDownload.txt" $selfLoc"inQueue.txt" 1
+        moveTo "toDownload.txt" "inQueue.txt" 1
         download
     fi
 fi
