@@ -1,7 +1,7 @@
 #!/bin/sh
 
 linesCount="0"
-loc="/media/hdd/home/Movies"
+loc="$1"
 selfLoc="/home/chadidi/files/downloader/"
 
 moveTo() {
