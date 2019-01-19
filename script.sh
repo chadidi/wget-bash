@@ -27,6 +27,17 @@ download() {
     fi
 }
 
+# check if script is already running
+dupe_script=$(ps -ef | grep $selfLoc"script.sh" | grep -v grep | wc -l)
+
+echo ${dupe_script}
+echo $dupe_script
+if [ $dupe_script -gt 3 ]
+then
+    echo -e "The script was already running."
+    exit 0
+fi
+
 count "inQueue.txt"
 
 if [ $linesCount != 0 ]
