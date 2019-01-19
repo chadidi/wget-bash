@@ -22,7 +22,7 @@ download() {
     then
         moveTo "inQueue.txt" "failed.txt" 1
     else
-        mv "${url##*/}" $loc
+        # mv "${url##*/}" $loc
         moveTo "inQueue.txt" "downloaded.txt" 1
     fi
 }
