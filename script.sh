@@ -36,13 +36,13 @@ fi
 
 count "inQueue.txt"
 
-if [ $linesCount != 0 ]
+if [ $linesCount -gt 0 ]
 then
     download
 else
     count "toDownload.txt"
 
-    if [ $linesCount != 0 ]
+    if [ $linesCount -gt 0 ]
     then
         moveTo "toDownload.txt" "inQueue.txt" 1
         download
