@@ -2,7 +2,8 @@
 
 linesCount="0"
 loc="$1"
-selfLoc="/home/chadidi/files/downloader/"
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+selfLoc="$DIR/"
 
 moveTo() {
     head -n $3 $selfLoc$1 >> $selfLoc$2 # Move to a new file
