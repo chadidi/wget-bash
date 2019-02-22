@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 linesCount="0"
 loc="$1"
